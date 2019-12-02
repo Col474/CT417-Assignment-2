@@ -1,33 +1,69 @@
+import java.util.ArrayList;
 import org.joda.time.DateTime;
 
 public class Course {
-	private String name;
-	private Module modules[];
-	private Student students[];
-	private DateTime startDate;
-	private DateTime endDate;
-	
-	public Course(String name,DateTime starDate,DateTime endDate, DateTime startDate){
-	this.name  = name;
-	this.startDate = startDate;
-	this.endDate = endDate;
-	}
-	
-	public String getName() {
-		return name;
-	}
-	public Module[] getModules() {
-		return modules;
-	}
-	public Student[] getStudents() {
-		return students;
-	}
-	public DateTime getStartDate() {
-		return startDate;
-	}
-	public DateTime getEndDate() {
-		return endDate;
-	}
+
+    private String courseName;
+    private ArrayList<Module> Modules = new ArrayList();
+    private ArrayList<Student> Students = new ArrayList();
+    private DateTime startDate;
+    private DateTime endDate;
+
+    public Course(String courseName, DateTime startDate, DateTime endDate) {
+        this.courseName = courseName;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
+
+    
+    // Adds Module to Course if not already added. Adds Students of Module to
+    //  Course if not already added
+    public void addModule(Module module) {
+        if (!Modules.contains(module)) {
+            Modules.add(module);
+            ArrayList<Student> ModuleStudents = module.getStudents();
+            for (Student student : ModuleStudents) {
+                if (!Students.contains(student)) {
+                    Students.add(student);
+                    student.addCourse(this);
+                }
+            }
+        }
+    }
+
+   
+    //Adds Student to Course if not already added.
+    public void addStudent(Student student) {
+        if (!Students.contains(student)) {
+            Students.add(student);
+        }
+    }
+
+
+    public void printStudentUsernames() {
+        for (Student student : Students) {
+            System.out.println(student.getUserName());
+        }
+    }
+
+    public void printModuleList() {
+        for (Module module : Modules) {
+            System.out.println(module.getModuleDetails());
+        }
+    }
+    
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+
+    public DateTime getStartDate() {
+        return this.startDate;
+    }
+
+
+    public DateTime getEndDate() {
+        return this.endDate;
+    }
 }
-
-
