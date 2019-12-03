@@ -45,6 +45,12 @@ public class Course {
             System.out.println(student.getUserName());
         }
     }
+    
+    public void printStudentDetails() {
+        for (Student student : Students) {
+            student.printStudentDetails();
+        }
+    }
 
     public void printModuleList() {
         for (Module module : Modules) {
