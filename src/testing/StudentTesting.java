@@ -1,12 +1,11 @@
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.joda.time.DateTime;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.Assert.*;
+import static org.junit.Assert.*;
+
 
 class StudentTesting {
 	    DateTime sampleDOB = new DateTime(1996, 07, 22, 4, 20);
